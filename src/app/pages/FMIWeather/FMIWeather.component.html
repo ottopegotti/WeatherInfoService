@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+     
+      
+        <h1>Local Weather Web Site</h1>
+
+        <section class="row text-center placeholders">
+          <div class="col-6 col-sm-3 placeholder">     
+                     
+            <img src= {{imglink}} width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+            <h4>{{city}}</h4>
+            <div class="text-muted">{{DateTime.Now}}</div>
+          </div>
+        </section>
+
+        <h2>Last Observations</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>                
+                <th>Time (10M Interval)</th>
+                <th>Temperature</th>
+                <th>Visibility</th>
+                <th>Pressure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let weatherInfo of weatherInfos">                 
+                <td>{{weatherInfo.time}}</td>
+                <td>{{weatherInfo.temperature}}</td>
+                <td>{{weatherInfo.vis}}</td>
+                <td>{{weatherInfo.pressure}}</td>                  
+              </tr>            
+            </tbody>
+          </table>
+        </div>
+     
+    </div>
+  </div>
