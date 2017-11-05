@@ -12,7 +12,8 @@ var options = {
 var geocoder = NodeGeocoder(options);
 
 exports.GetReverseGeoCoding= (latitude,longitude)=>{
-    return geocoder.reverse({lat:latitude, lon:longitude});   
+  //return geocoder.reverse({lat:61.4468116, lon:23.8511594});
+  return geocoder.reverse({lat:latitude, lon:longitude});
 }
 
 

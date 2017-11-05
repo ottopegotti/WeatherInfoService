@@ -7,10 +7,10 @@
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
     <div *ngIf="eml.errors && (eml.dirty || eml.touched)" class="alert alert-danger">
         <div [hidden]="!eml.errors.required">
-          L'email est requis
+          E-mail control!(not active in demo)
         </div>
         <div [hidden]="!eml.errors.minlength">
-          L'email doit avoir au moins 8 caractères
+          E-mail control!(not active in demo)
         </div>
     </div>
   </div>
@@ -21,10 +21,10 @@
     <div *ngIf="passwd.errors && (passwd.dirty || passwd.touched)"
          class="alert alert-danger">
         <div [hidden]="!passwd.errors.required">
-          Le password est requis
+           Password control!(not active in demo)
         </div>
         <div [hidden]="!passwd.errors.minlength">
-          Le password doit avoir au moins 8 caractères
+           Password control!(not active in demo)
         </div>
     </div>
   </div>
@@ -54,6 +54,6 @@
     Google+</a>
 </div>
 <!-- /.social-auth-links -->
-
+<p>No need to registration in demo version --> Press sign in </p>
 <a href="#">I forgot my password</a><br>
 <a routerLink="/register" class="text-center">Register a new membership</a>

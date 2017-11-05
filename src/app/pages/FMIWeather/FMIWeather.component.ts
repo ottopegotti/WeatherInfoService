@@ -37,6 +37,9 @@ public GetWeatherInfo(){
     this.weatherInfoServiceFMI.GetCity(this.latitude,this.longitude)
       .then((city)=>{
         this.city=city;
+        if(city!='Turku' && city!='Tampere' &&city!='Helsinki')
+        this.imglink=`/public/assets/img/weather.jpg`;
+        else
         this.imglink=`/public/assets/img/${city}.jpg`;
       })
       .catch((error)=>this.HandleError(error));

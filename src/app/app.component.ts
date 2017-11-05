@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   private mylinks: any = [
     {
       'title': 'Yahoo Weather Service',
-      'icon': 'dashboard',
+      'icon': 'yahoo',
       'link': ['/']
     },
     {
@@ -39,47 +39,20 @@ export class AppComponent implements OnInit {
       'link': ['/fmi']
     },
     {
-      'title': 'Sub menu',
-      'icon': 'link',
-      'sublinks': [
-        {
-          'title': 'FMI Weather Service',
-          'link': ['/page/2'],
-        },
-        {
-      'title': 'Yahoo Weather Service',
-      'icon': 'dashboard',
-      'link': ['/']
-    },
-      ]
-    },
-    {
-      'title': 'External Link',
-      'icon': 'google',
+      'title': 'Linkedin Profile',
+      'icon': 'linkedin',
       'link': ['https://www.linkedin.com/in/utku-kapucu-0b569a12'],
       'external': true,
       'target': '_blank'
     },
     {
-      'title': 'External Links',
-      'icon': 'link',
-      'sublinks': [
-        {
-          'title': 'Github',
-          'link': ['https://github.com/TwanoO67/ngx-admin-lte'],
-          'icon': 'github',
-          'external': true,
-          'target': '_blank'
-        },
-        {
-          'title': 'Yahoo',
-          'link': ['http://yahoo.com'],
-          'icon': 'yahoo',
-          'external': true,
-          'target': '_blank'
-        }
-      ]
+      'title': 'Github',
+      'link': ['https://github.com/ottopegotti/WeatherInfoService'],
+      'icon': 'github',
+      'external': true,
+      'target': '_blank'
     },
+   
     // external widget
     {
       class: MenuWidgetComponent,
@@ -113,7 +86,7 @@ export class AppComponent implements OnInit {
 
     // FAKE MESSAGE
     // defining some test users
-    const user1 = new User( {
+    /*const user1 = new User( {
         avatarUrl: 'assets/img/user2-160x160.jpg',
         email: 'weber.antoine.pro@gmail.com',
         firstname: 'WEBER',
@@ -128,7 +101,7 @@ export class AppComponent implements OnInit {
     // sending a test message
     this.msgServ.addMessage( new Message( {
         author: user2,
-        content: 'le contenu d\'un message d\'une importance extreme',
+        content: 'd\'un message d\'une importance extreme',
         destination: user1,
         title: 'un message super important'
     }) );
@@ -137,7 +110,7 @@ export class AppComponent implements OnInit {
         class: 'fa fa-users text-aqua',
         content: '5 new members joined today',
         link: '/page/2'
-    }) );
+    }) );*/
 
 
   }
