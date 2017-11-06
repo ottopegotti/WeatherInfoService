@@ -29,6 +29,6 @@ app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,'dist/index.html'));
 });
 
-app.listen(8080, function () {
+app.listen(445, function () {
 console.log("CustMgr Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
