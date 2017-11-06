@@ -7,7 +7,7 @@ const path=require ('path');
 const http=require('http');
 
 app = express();
-
+app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'dist')));
 app.use(session({ 
     secret: 'LocalWeather', 
@@ -35,6 +35,7 @@ app.get('*', function (req, res) {
   });
 const port=process.env.PORT || '3000';
 app.set('port',port);
+
 
 const server=http.createServer(app);
 server.listen(port,() =>console.log("CustMgr Express server listening on port %d",port));
