@@ -1,4 +1,6 @@
 # A weather application with angular and express(node.js) and bootstraping ngx-admin-lte is used as a 3rdparty tool
++accomplished
+-works need
 
 +Get GPS location through Phone location API     
 
