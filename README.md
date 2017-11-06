@@ -13,7 +13,7 @@
 +Source code & app should be shared for review (GIT repocitory etc)
 
 ## Demo view from my local machine
-(https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
+![Preview] (https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
 
 ## Lauching with node > 7 locally installed
 ```
