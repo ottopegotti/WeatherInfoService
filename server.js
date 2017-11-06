@@ -4,7 +4,7 @@ session = require('express-session'),
 api = require('./server/api/api'),
 cors = require('cors');
 const path=require ('path');
-const http=require('http');
+const http=require('https');
 
 app = express();
 app.use(express.static(path.join(__dirname,'dist')));
@@ -36,7 +36,7 @@ const port=process.env.PORT || '8080';
 app.set('port',port);
 
 
-const server=http.createServer(app);
+const server=https.createServer(app);
 server.listen(port,() =>console.log("CustMgr Express server listening on port %d",port));
 
 /*
