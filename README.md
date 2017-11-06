@@ -1,72 +1,28 @@
-# bootstraping ngx-admin-lte
+A weather application with angular and express(node.js) and bootstraping ngx-admin-lte is used as a 3rdparty tool
 
-[![Join the chat at https://gitter.im/TwanoO67/ng2-admin-lte](https://badges.gitter.im/TwanoO67/ng2-admin-lte.svg)](https://gitter.im/TwanoO67/ng2-admin-lte?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/TwanoO67/ng2-admin-lte.svg?branch=master)](https://travis-ci.org/TwanoO67/ng2-admin-lte)
++accomplished 
+-works need
 
-Bootstraping of Angular4 with AdminLTE dashboard template
-( Using ngx-admin-lte Library)
++Get GPS location through Phone location API
 
-![Preview](https://almsaeedstudio.com/img/AdminLTE2.1.png)
+•Reverse geocode it to match location (city etc)
+•Display public weather data for that location (from FMI API:s) -> You may choose freely what data to display and how.
++(WEB) Technology is free to choose (WEB, iOS native, Android Native)
++(3rd party angular admin panel) UI Design is free to do whatever feels comfortable
++(Yahoo weather connection is provided )Additional features are of course a plus but not required
++Source code & app should be shared for review (GIT repocitory etc)
 
-## UPDATE !
+##Demo view from my local machine
+(https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
 
-This version use the new npm package ngx-admin-lte (this will be easier to update)
-If your are looking for the old version for angular check the "angular2" branch.
+##Lauching with node > 7 locally installed
+npm install
 
-There's now two different repo:
-* [bootstraping-ngx-admin-lte](https://github.com/TwanoO67/bootstraping-ngx-admin-lte) For those who want the full bootstraping
-* [ngx-admin-lte](https://github.com/TwanoO67/ngx-admin-lte) For whom want to install via npm in a existing project
+ng build
 
-## Support
-Hey dude! Help me out for a couple of :beers:!
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ghostsmaker@hotmail.com&lc=US&item_name=TwanoO67&item_number=ng2-admin-lte&no_note=0&currency_code=EUR)
-
-## Launching with docker
-
-```
-./bin/start.sh
-```
-
-## Building with docker
-
-```
-./bin/prod.sh
-```
-
-## Lauching with node > 7 locally installed
-
-```
-npm install -g yarn
-yarn
-yarn start
-```
-
-## Developpement
+node server
 
 
-For the feature on the Admin_LTE template, see the readme of this repo:
-[https://github.com/TwanoO67/ngx-admin-lte](https://github.com/TwanoO67/ngx-admin-lte)
+##3rd party admin panel UI
 
-Adding a component
-
-```
-cd src/app/widgets/
-yarn ng g component my-new-widget
-```
-
-Adding a page
-
-```
-cd src/app/pages/
-yarn ng g component my-new-page
-```
-
-Adding a service
-
-```
-cd src/app/services/
-yarn ng g service my-new-service
-```
-
-
+https://github.com/TwanoO67/ngx-admin-lte
