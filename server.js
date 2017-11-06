@@ -36,7 +36,7 @@ const port=process.env.PORT || '8080';
 app.set('port',port);
 
 
-const server=https.createServer(app);
+const server=http.createServer(app);
 server.listen(port,() =>console.log("CustMgr Express server listening on port %d",port));
 
 /*
