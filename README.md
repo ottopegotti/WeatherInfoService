@@ -1,4 +1,4 @@
-A weather application with angular and express(node.js) and bootstraping ngx-admin-lte is used as a 3rdparty tool
+## A weather application with angular and express(node.js) and bootstraping ngx-admin-lte is used as a 3rdparty tool
 
 +accomplished 
 -works need
@@ -12,17 +12,16 @@ A weather application with angular and express(node.js) and bootstraping ngx-adm
 +(Yahoo weather connection is provided )Additional features are of course a plus but not required
 +Source code & app should be shared for review (GIT repocitory etc)
 
-##Demo view from my local machine
+## Demo view from my local machine
 (https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
 
-##Lauching with node > 7 locally installed
+## Lauching with node > 7 locally installed
+```
 npm install
-
 ng build
-
 node server
+```
 
-
-##3rd party admin panel UI
+## 3rd party admin panel UI
 
 https://github.com/TwanoO67/ngx-admin-lte
