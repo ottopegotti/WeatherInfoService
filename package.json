@@ -10,8 +10,7 @@
     "prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "grunt sass:production && ng build --aot -prod"
+    "e2e": "ng e2e"
   },
   "engines": {
     "node":"~v6.11.5",
