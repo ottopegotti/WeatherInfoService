@@ -5,12 +5,13 @@
   "main": "server.js",
   "scripts": {
     "ng": "ng",
-    "start":"http-server dist/",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+
   },
   "engines": {
     "node":"~v6.11.5",
