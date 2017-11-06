@@ -7,7 +7,6 @@ const path=require ('path');
 const http=require('http');
 
 app = express();
-app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'dist')));
 app.use(session({ 
     secret: 'LocalWeather', 
@@ -33,7 +32,7 @@ app.get('*', function (req, res) {
     const index = path.join(__dirname, 'dist', 'index.html');
     res.sendFile(index);
   });
-const port=process.env.PORT || '8080';
+const port=process.env.PORT || '80';
 app.set('port',port);
 
 
