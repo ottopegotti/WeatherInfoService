@@ -16,6 +16,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
+
 app.options('*', cors());
 var baseUrl = '/api/';
 app.get(baseUrl+'getweatherFMI/:latitude/:longitude',api.GetLocalWeatherInfoFMI);
@@ -29,6 +30,7 @@ app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,'dist/index.html'));
 });
 
-app.listen(8080, function () {
-console.log("CustMgr Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+
+app.listen(8080,'127.0.0.1', function () {
+    console.log("CustMgr Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

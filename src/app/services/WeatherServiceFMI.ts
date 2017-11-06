@@ -11,7 +11,7 @@ import { WeatherInfoFMI } from '../models/WeatherInfoFMI';
 @Injectable()
 export  class WeatherInfoServiceFMI {
  
-  private weatherInfoUrl = 'http://localhost:8080/api';  // URL to web api
+  private weatherInfoUrl = '/api';  // URL to web api
  
   constructor(private http: Http) { }
  
