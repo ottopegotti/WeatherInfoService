@@ -14,17 +14,12 @@
 
 +(Yahoo weather connection is provided )Additional features are of course a plus but not required
 
-+- (It was published in Heroku however some port settings need to be adjusted )Publishing in google play/Appstore is a plus but not required (there is no need to do production level code but you may, of course do it anyway.)
-
 +Source code & app should be shared for review (GIT repocitory etc)
 
 
 ## Demo view from my local machine
 https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG
 
-## Cloud
-https://warm-dawn-14280.herokuapp.com/
-(It was published in Heroku however some port settings need to be adjusted )
 
 ## Lauching with node > 7 locally installed
 
