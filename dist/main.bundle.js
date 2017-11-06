@@ -354,7 +354,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WeatherInfoServiceFMI = (function () {
     function WeatherInfoServiceFMI(http) {
         this.http = http;
-        this.weatherInfoUrl = 'https://localhost:445/api'; // URL to web api
+        this.weatherInfoUrl = 'https://localhost:8080/api'; // URL to web api
     }
     WeatherInfoServiceFMI.prototype.GetWeatherInfo = function (latitude, longitude) {
         var url = "" + this.weatherInfoUrl + "/getweatherFMI/" + (latitude + "/" + longitude);

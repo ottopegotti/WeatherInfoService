@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
 const _ = require('lodash');
-const http = require('https');
+const http = require('http');
 const constants = require('./constants');
 const config = require('./config');
 const xml2js = require('xml2js');
