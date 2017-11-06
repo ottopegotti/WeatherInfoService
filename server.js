@@ -37,7 +37,7 @@ app.set('port',port);
 
 
 const server=https.createServer(app);
-server.listen(8080,() =>console.log("CustMgr Express server listening on port %d",port));
+server.listen(port,() =>console.log("CustMgr Express server listening on port %d",port));
 
 /*
 app.listen(3000, function () {
