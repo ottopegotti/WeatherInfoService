@@ -23,8 +23,9 @@ Source code & app should be shared for review (GIT repocitory etc)
 https://github.com/ottopegotti/WeatherInfoService/
 
 ## Demo view 
-![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
+![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/heroku_demo1.PNG)
 ![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/heroku_demo.PNG)
+
 ## Lauching with node > 7 locally installed
 ```
 npm install
