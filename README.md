@@ -11,7 +11,7 @@ Get GPS location through Phone location API   +
 
 
 Technology is free to choose (WEB, iOS native, Android Native)
-+(WEB)  Please consider that the html5 Geolocation Api's working differs based on the browsers.
++(WEB)  Please consider that the Html5 Geolocation Api doesn't work properly on some of the browsers.
 
 
 UI Design is free to do whatever feels comfortable
