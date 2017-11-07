@@ -30,7 +30,7 @@ app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,'dist/index.html'));
 });
 
-
+//process.env.PORT or 8080
 app.listen(process.env.PORT, function () {
     console.log("CustMgr Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

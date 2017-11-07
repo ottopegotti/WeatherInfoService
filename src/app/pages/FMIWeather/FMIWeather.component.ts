@@ -20,8 +20,7 @@ export class FMIWeatherComponent implements OnInit, OnDestroy {
     private msgServ: MessagesService,
     private breadServ: BreadcrumbService,
     private weatherInfoServiceFMI:WeatherInfoServiceFMI) 
-    {
-    
+    {   
       
   }
 

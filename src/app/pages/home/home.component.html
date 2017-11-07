@@ -1,134 +1,109 @@
-<section>
-<div class="main_pg_sutun_genis">
-	<div class="tahmin acik" id="t1">
-		<div class="tahminAcikKapali">
-			<div class="tahminSol">
-				<div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun1 | meteorDateFormatGun">Pazar</div>
-				<div class="tahminIkon">
-					<img src="Images_Sys/hadiseler/Y.svg" ng-src="Images_Sys/hadiseler/Y.svg">
-				</div>
-				<div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun1Adi">Yağmurlu</div>
-				<div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun1 | kaliteKontrol">4</span><span class="derece">°C</span></div>
-				<div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun1 | kaliteKontrol">10</span><span class="derece">°C</span></div>
-			</div>
-			<div class="tahminSag">
-				<div class="nem">Nem (%)</div>
-				<div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun1 | kaliteKontrol">54</span>-<span class="ng-binding" ng-bind="gunlukTahmin[0].enYuksekNemGun1 | kaliteKontrol">90</span></div>
-				<div class="ruzgar">Rüzgar (km/sa)</div>
-				<div class="ruzgarYon">
-					<img id="imgRuzgaryonGunluk1" style="transform: rotate(71deg);" src="Images_Sys/ruzgaryon1.png"><br>
-					<span class="ng-binding" ng-bind="gunlukTahmin[0].ruzgarYonGun1Adi">Doğudan</span>
-				</div>
-				<div class="ruzgarDeger"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun1 | kaliteKontrol">16</span></div>
-			</div>
-		</div>
-	</div>
+<div class="panel panel-info">
+		<div class="panel-heading">{{weatherInfos.query.results.channel.title}} ( 5 days forecast )</div>
+		<div class="panel-body">
+			<div class="container"><div class="left"><div class="forecast">
+				<div class="main_pg_sutun_genis">
+                        <div class="tahmin acik" id="t1">
+                            <div class="tahminAcikKapali">
+                                <div class="tahminSol">
+                                <div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun1 | meteorDateFormatGun">{{weatherInfos.query.results.channel.item.forecast[0].day}}</div>
+                                    <div class="tahminIkon">
+                                        <img src= {{imglink1}} ng-src="Images_Sys/hadiseler/Y.svg">
+                                    </div>
+                                    <div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun1Adi">{{weatherInfos.query.results.channel.item.forecast[0].text}}</div>
+                                    <div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun1 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[0].low}}</span><span class="derece">°C</span></div>
+                                    <div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun1 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[0].high}}</span><span class="derece">°C</span></div>
+                                </div>
+                                <div class="tahminSag">
+                                    <div class="nem">Humidity (%)</div>
+                                    <div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun1 | kaliteKontrol">{{weatherInfos.query.results.channel.atmosphere.humidity}}</span></div>
+                                    <div class="ruzgar">Wind (speed)</div>
+                                    <div><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun1 | kaliteKontrol">{{weatherInfos.query.results.channel.wind.speed}}</span></div>
+                                </div>
+                            </div>
+                        </div>
 
-	<div class="tahmin" id="t2">
-		<div class="tahminAcikKapali">
-			<div class="tahminSol">
-				<div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun2 | meteorDateFormatGun">Pazartesi</div>
-				<div class="tahminIkon">
-					<img src="Images_Sys/hadiseler/CB.svg" ng-src="Images_Sys/hadiseler/CB.svg">
-				</div>
-				<div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun2Adi">Çok Bulutlu</div>
-				<div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun2 | kaliteKontrol">5</span><span class="derece">°C</span></div>
-				<div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun2 | kaliteKontrol">11</span><span class="derece">°C</span></div>
-			</div>
-			<div class="tahminSag">
-				<div class="nem">Nem (%)</div>
-				<div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun2 | kaliteKontrol">63</span>-<span class="ng-binding" ng-bind="gunlukTahmin[0].enYuksekNemGun2 | kaliteKontrol">96</span></div>
-				<div class="ruzgar">Rüzgar (km/sa)</div>
-				<div class="ruzgarYon">
-					<img id="imgRuzgaryonGunluk2" style="transform: rotate(245deg);" src="Images_Sys/ruzgaryon1.png"><br>
-					<span class="ng-binding" ng-bind="gunlukTahmin[0].ruzgarYonGun2Adi">Güneybatıdan</span>
-				</div>
-				<div class="ruzgarDeger"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun2 | kaliteKontrol">15</span></div>
-			</div>
-		</div>
-	</div>
+                        <div class="tahmin" id="t2">
+                            <div class="tahminAcikKapali">
+                                <div class="tahminSol">
+                                    <div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun2 | meteorDateFormatGun">{{weatherInfos.query.results.channel.item.forecast[1].day}}</div>
+                                    <div class="tahminIkon">
+                                        <img src= {{imglink2}} ng-src="Images_Sys/hadiseler/CB.svg">
+                                    </div>
+                                    <div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun2Adi">{{weatherInfos.query.results.channel.item.forecast[1].text}}</div>
+                                    <div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun2 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[1].low}}</span><span class="derece">°C</span></div>
+                                    <div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun2 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[1].high}}</span><span class="derece">°C</span></div>
+                                </div>
+                            </div>
+                        </div>
 
-	<div class="tahmin" id="t3">
-		<div class="tahminAcikKapali">
-			<div class="tahminSol">
-				<div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun3 | meteorDateFormatGun">Salı</div>
-				<div class="tahminIkon">
-					<img src="./icons/AB.svg" ng-src="./icons/AB.svg">
-				</div>
-				<div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun3Adi">Az Bulutlu</div>
-				<div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun3 | kaliteKontrol">2</span><span class="derece">°C</span></div>
-				<div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun3 | kaliteKontrol">14</span><span class="derece">°C</span></div>
-			</div>
-			<div class="tahminSag">
-				<div class="nem">Nem (%)</div>
-				<div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun3 | kaliteKontrol">44</span>-<span class="ng-binding" ng-bind="gunlukTahmin[0].enYuksekNemGun3 | kaliteKontrol">90</span></div>
-				<div class="ruzgar">Rüzgar (km/sa)</div>
-				<div class="ruzgarYon">
-					<img id="imgRuzgaryonGunluk3" style="transform: rotate(100deg);" src="Images_Sys/ruzgaryon1.png"><br>
-					<span class="ng-binding" ng-bind="gunlukTahmin[0].ruzgarYonGun3Adi">Doğudan</span>
-				</div>
-				<div class="ruzgarDeger"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun3 | kaliteKontrol">6</span></div>
-			</div>
-		</div>
-	</div>
+                        <div class="tahmin" id="t3">
+                            <div class="tahminAcikKapali">
+                                <div class="tahminSol">
+                                    <div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun3 | meteorDateFormatGun">{{weatherInfos.query.results.channel.item.forecast[2].day}}</div>
+                                    <div class="tahminIkon">
+                                        <img src= {{imglink3}} ng-src="./icons/AB.svg">
+                                    </div>
+                                    <div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun3Adi">{{weatherInfos.query.results.channel.item.forecast[2].text}}</div>
+                                    <div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun3 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[2].low}}</span><span class="derece">°C</span></div>
+                                    <div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun3 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[2].high}}</span><span class="derece">°C</span></div>
+                                </div>
+                            </div>
+                        </div>
 
-	<div class="tahmin" id="t4">
-		<div class="tahminAcikKapali">
-			<div class="tahminSol">
-				<div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun4 | meteorDateFormatGun">Çarşamba</div>
-				<div class="tahminIkon">
-					<img src="Images_Sys/hadiseler/AB.svg" ng-src="Images_Sys/hadiseler/AB.svg">
-				</div>
-				<div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun4Adi">Az Bulutlu</div>
-				<div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun4 | kaliteKontrol">2</span><span class="derece">°C</span></div>
-				<div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun4 | kaliteKontrol">14</span><span class="derece">°C</span></div>
-			</div>
-			<div class="tahminSag">
-				<div class="nem">Nem (%)</div>
-				<div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun4 | kaliteKontrol">39</span>-<span class="ng-binding" ng-bind="gunlukTahmin[0].enYuksekNemGun4 | kaliteKontrol">84</span></div>
-				<div class="ruzgar">Rüzgar (km/sa)</div>
-				<div class="ruzgarYon">
-					<img id="imgRuzgaryonGunluk4" style="transform: rotate(83deg);" src="Images_Sys/ruzgaryon1.png"><br>
-					<span class="ng-binding" ng-bind="gunlukTahmin[0].ruzgarYonGun4Adi">Doğudan</span>
-				</div>
-				<div class="ruzgarDeger"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun4 | kaliteKontrol">6</span></div>
-			</div>
-		</div>
-	</div>
+                        <div class="tahmin" id="t4">
+                            <div class="tahminAcikKapali">
+                                <div class="tahminSol">
+                                    <div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun4 | meteorDateFormatGun">{{weatherInfos.query.results.channel.item.forecast[3].day}}</div>
+                                    <div class="tahminIkon">
+                                        <img src= {{imglink4}} ng-src="Images_Sys/hadiseler/AB.svg">
+                                    </div>
+                                    <div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun4Adi">{{weatherInfos.query.results.channel.item.forecast[3].text}}</div>
+                                    <div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun4 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[3].low}}</span><span class="derece">°C</span></div>
+                                    <div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun4 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[3].high}}</span><span class="derece">°C</span></div>
+                                </div>
+                            </div>
+                        </div>
 
-	<div class="tahmin" id="t5">
-		<div class="tahminAcikKapali">
-			<div class="tahminSol">
-				<div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun5 | meteorDateFormatGun">Perşembe</div>
-				<div class="tahminIkon">
-					<img src="Images_Sys/hadiseler/PB.svg" ng-src="Images_Sys/hadiseler/PB.svg">
-				</div>
-				<div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun5Adi">Parçalı Bulutlu</div>
-				<div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun5 | kaliteKontrol">3</span><span class="derece">°C</span></div>
-				<div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun5 | kaliteKontrol">16</span><span class="derece">°C</span></div>
-			</div>
-			<div class="tahminSag">
-				<div class="nem">Nem (%)</div>
-				<div class="deger"><span class="ng-binding" ng-bind="gunlukTahmin[0].enDusukNemGun5 | kaliteKontrol">34</span>-<span class="ng-binding" ng-bind="gunlukTahmin[0].enYuksekNemGun5 | kaliteKontrol">77</span></div>
-				<div class="ruzgar">Rüzgar (km/sa)</div>
-				<div class="ruzgarYon">
-					<img id="imgRuzgaryonGunluk5" style="transform: rotate(219deg);" src="Images_Sys/ruzgaryon1.png">
-					<br>
-					<span class="ng-binding" ng-bind="gunlukTahmin[0].ruzgarYonGun5Adi">Güneybatıdan</span>
-				</div>
-				<div class="ruzgarDeger"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].ruzgarHizGun5 | kaliteKontrol">8</span></div>
-			</div>
+                        <div class="tahmin" id="t5">
+                            <div class="tahminAcikKapali">
+                                <div class="tahminSol">
+                                    <div class="tahminTarih ng-binding" ng-bind="gunlukTahmin[0].tarihGun5 | meteorDateFormatGun">{{weatherInfos.query.results.channel.item.forecast[4].day}}</div>
+                                    <div class="tahminIkon">
+                                        <img src= {{imglink5}} ng-src="Images_Sys/hadiseler/PB.svg">
+                                    </div>
+                                    <div class="tahminHadise ng-binding" ng-bind="gunlukTahmin[0].hadiseGun5Adi">{{weatherInfos.query.results.channel.item.forecast[4].text}}</div>
+                                    <div class="tahminMin"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enDusukGun5 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[4].low}}</span><span class="derece">°C</span></div>
+                                    <div class="tahminMax"><span class="deger ng-binding" ng-bind="gunlukTahmin[0].enYuksekGun5 | kaliteKontrol">{{weatherInfos.query.results.channel.item.forecast[4].high}}</span><span class="derece">°C</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                </div></div></div>
 		</div>
-	</div>
-	<div class="clr"></div>
-</div>
-</section>
-<section>
-	
-		
-		<div class="w3-row">
+	  </div>
 
-			asdasd
+	  <div class="panel panel-info">
+		<div class="panel-heading">
+		  <h3 class="panel-title">Forecasting Low/High temperature graph </h3>
 		</div>
-	  
-</section>
+		<div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                  <div style="display: block;">
+                  <canvas baseChart width="150" height="200"
+                              [datasets]="lineChartData"
+                              [labels]="lineChartLabels"
+                              [options]="lineChartOptions"
+                              [colors]="lineChartColors"
+                              [legend]="lineChartLegend"
+                              [chartType]="lineChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+              </div>
+            
+		</div>
+	  </div>

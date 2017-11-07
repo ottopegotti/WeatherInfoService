@@ -1,12 +1,20 @@
 webpackJsonp([2,5],{
 
-/***/ 166:
+/***/ 1036:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(465);
+
+
+/***/ }),
+
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceFMI__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceFMI__ = __webpack_require__(178);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FMIWeatherComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -80,10 +88,10 @@ var FMIWeatherComponent = (function () {
     return FMIWeatherComponent;
 }());
 FMIWeatherComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-fmi',
-        styles: [__webpack_require__(547)],
-        template: __webpack_require__(573)
+        styles: [__webpack_require__(720)],
+        template: __webpack_require__(749)
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceFMI__["a" /* WeatherInfoServiceFMI */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceFMI__["a" /* WeatherInfoServiceFMI */]) === "function" && _c || Object])
 ], FMIWeatherComponent);
@@ -93,12 +101,13 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 167:
+/***/ 174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__ = __webpack_require__(179);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -111,14 +120,146 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HomeComponent = (function () {
-    function HomeComponent(msgServ, breadServ) {
+    ////////////////
+    function HomeComponent(weatherInfoServiceYAHOO, msgServ, breadServ) {
+        this.weatherInfoServiceYAHOO = weatherInfoServiceYAHOO;
         this.msgServ = msgServ;
         this.breadServ = breadServ;
-        this.date = new Date();
+        //////Chart
+        /*
+        public lineChartData:Array<any> = [
+          {data: [
+            this.weatherInfos.query.results.channel.item.forecast[0].low,
+            this.weatherInfos.query.results.channel.item.forecast[1].low,
+            this.weatherInfos.query.results.channel.item.forecast[2].low,
+            this.weatherInfos.query.results.channel.item.forecast[3].low,
+            this.weatherInfos.query.results.channel.item.forecast[4].low,
+            this.weatherInfos.query.results.channel.item.forecast[5].low,
+            this.weatherInfos.query.results.channel.item.forecast[6].low,
+            this.weatherInfos.query.results.channel.item.forecast[7].low,
+            this.weatherInfos.query.results.channel.item.forecast[8].low,
+            this.weatherInfos.query.results.channel.item.forecast[9].low], label: 'Low Temperatures'},
+          {data: [
+            this.weatherInfos.query.results.channel.item.forecast[0].high,
+            this.weatherInfos.query.results.channel.item.forecast[1].high,
+            this.weatherInfos.query.results.channel.item.forecast[2].high,
+            this.weatherInfos.query.results.channel.item.forecast[3].high,
+            this.weatherInfos.query.results.channel.item.forecast[4].high,
+            this.weatherInfos.query.results.channel.item.forecast[5].high,
+            this.weatherInfos.query.results.channel.item.forecast[6].high,
+            this.weatherInfos.query.results.channel.item.forecast[7].high,
+            this.weatherInfos.query.results.channel.item.forecast[8].high,
+            this.weatherInfos.query.results.channel.item.forecast[9].high], label: 'High Temperatures'}
+        ];*/
+        this.lineChartData = [{ data: [] }, { data: [] }];
+        this.lineChartLabels = ['DAY1', 'DAY2', 'DAY3', 'DAY4', 'DAY5',
+            'DAY6', 'DAY7', 'DAY8', 'DAY9', 'DAY10'];
+        this.lineChartOptions = {
+            responsive: true
+        };
+        this.lineChartColors = [
+            {
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(77,83,96,0.2)',
+                borderColor: 'rgba(77,83,96,1)',
+                pointBackgroundColor: 'rgba(77,83,96,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(77,83,96,1)'
+            },
+            {
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }
+        ];
+        this.lineChartLegend = true;
+        this.lineChartType = 'line';
         // TODO
     }
+    HomeComponent.prototype.randomize = function () {
+        var _lineChartData = new Array(this.lineChartData.length);
+        for (var i = 0; i < this.lineChartData.length; i++) {
+            _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
+            for (var j = 0; j < this.lineChartData[i].data.length; j++) {
+                _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+            }
+        }
+        this.lineChartData = _lineChartData;
+    };
+    // events
+    HomeComponent.prototype.chartClicked = function (e) {
+        console.log(e);
+    };
+    HomeComponent.prototype.chartHovered = function (e) {
+        console.log(e);
+    };
+    HomeComponent.prototype.GetWeatherInfo = function () {
+        var _this = this;
+        this.weatherInfoServiceYAHOO.GetWeatherInfo(this.latitude, this.longitude)
+            .subscribe(function (data) {
+            _this.weatherInfos = JSON.parse(data.json());
+            ///charts
+            _this.lineChartData = [
+                { data: [
+                        _this.weatherInfos.query.results.channel.item.forecast[0].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[1].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[2].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[3].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[4].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[5].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[6].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[7].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[8].low,
+                        _this.weatherInfos.query.results.channel.item.forecast[9].low
+                    ], label: 'Low Temperatures' },
+                { data: [
+                        _this.weatherInfos.query.results.channel.item.forecast[0].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[1].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[2].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[3].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[4].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[5].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[6].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[7].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[8].high,
+                        _this.weatherInfos.query.results.channel.item.forecast[9].high
+                    ], label: 'High Temperatures' }
+            ];
+            ///
+            _this.imglink1 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[0].text + ".png";
+            _this.imglink2 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[1].text + ".png";
+            _this.imglink3 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[2].text + ".png";
+            _this.imglink4 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[3].text + ".png";
+            _this.imglink5 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[4].text + ".png";
+        }, function (error) { return _this.HandleError(error); });
+    };
+    HomeComponent.prototype.GetCity = function () {
+        var _this = this;
+        this.weatherInfoServiceYAHOO.GetCity(this.latitude, this.longitude)
+            .then(function (city) {
+            _this.city = city;
+            if (city != 'Turku' && city != 'Tampere' && city != 'Helsinki')
+                _this.imglink = "/public/assets/img/weather.jpg";
+            else
+                _this.imglink = "/public/assets/img/" + city + ".jpg";
+        })
+            .catch(function (error) { return _this.HandleError(error); });
+    };
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // setttings the header for the home
         this.breadServ.setCurrent({
             description: 'HomePage',
@@ -132,34 +273,49 @@ var HomeComponent = (function () {
                 }
             ]
         });
+        new Promise(function (resolve, reject) {
+            navigator.geolocation.watchPosition(function (position) { return resolve(position); }, function (err) { return reject(err); });
+        })
+            .then(function (position) {
+            _this.latitude = position.coords.latitude;
+            _this.longitude = position.coords.longitude;
+        })
+            .then(function (_) {
+            _this.GetCity();
+            _this.GetWeatherInfo();
+        })
+            .catch(function (err) { return _this.HandleError(err); });
     };
     HomeComponent.prototype.ngOnDestroy = function () {
         // removing the header
         this.breadServ.clear();
     };
+    HomeComponent.prototype.HandleError = function (error) {
+        alert(error);
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-home',
-        styles: [__webpack_require__(548)],
-        template: __webpack_require__(574)
+        styles: [__webpack_require__(721)],
+        template: __webpack_require__(750)
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _c || Object])
 ], HomeComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
 
-/***/ 168:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(32);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -204,10 +360,10 @@ var LoginComponent = (function () {
     return LoginComponent;
 }());
 LoginComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-login',
         styles: ['./login.css'],
-        template: __webpack_require__(575)
+        template: __webpack_require__(751)
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["m" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["m" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
@@ -217,13 +373,13 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 169:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_admin_lte__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_admin_lte__ = __webpack_require__(48);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNumComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -277,10 +433,10 @@ var PageNumComponent = (function () {
     return PageNumComponent;
 }());
 PageNumComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-page-num',
-        styles: [__webpack_require__(549)],
-        template: __webpack_require__(576)
+        styles: [__webpack_require__(722)],
+        template: __webpack_require__(752)
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _b || Object])
 ], PageNumComponent);
@@ -290,11 +446,11 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 170:
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -316,9 +472,9 @@ var RegisterComponent = (function () {
     return RegisterComponent;
 }());
 RegisterComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-register',
-        template: __webpack_require__(577)
+        template: __webpack_require__(753)
     }),
     __metadata("design:paramtypes", [])
 ], RegisterComponent);
@@ -327,15 +483,15 @@ RegisterComponent = __decorate([
 
 /***/ }),
 
-/***/ 171:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeatherInfoServiceFMI; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -375,7 +531,7 @@ var WeatherInfoServiceFMI = (function () {
     return WeatherInfoServiceFMI;
 }());
 WeatherInfoServiceFMI = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], WeatherInfoServiceFMI);
 
@@ -384,11 +540,68 @@ var _a;
 
 /***/ }),
 
-/***/ 172:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeatherInfoServiceYAHOO; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var WeatherInfoServiceYAHOO = (function () {
+    function WeatherInfoServiceYAHOO(http) {
+        this.http = http;
+        this.weatherInfoUrl = '/api'; // URL to web api
+    }
+    WeatherInfoServiceYAHOO.prototype.GetWeatherInfo = function (latitude, longitude) {
+        var url = "" + this.weatherInfoUrl + "/getweatherYAHOO/" + (latitude + "/" + longitude);
+        return this.http.get(url)
+            .map(function (response) { return response; });
+    };
+    WeatherInfoServiceYAHOO.prototype.GetCity = function (latitude, longitude) {
+        var _this = this;
+        var url = "" + this.weatherInfoUrl + "/getcity/" + (latitude + "/" + longitude);
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(function (error) { return _this.handleError(error); });
+    };
+    WeatherInfoServiceYAHOO.prototype.handleError = function (error) {
+        return Promise.reject(error.message || error);
+    };
+    return WeatherInfoServiceYAHOO;
+}());
+WeatherInfoServiceYAHOO = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], WeatherInfoServiceYAHOO);
+
+var _a;
+//# sourceMappingURL=WeatherServiceYAHOO.js.map
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuWidgetComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -409,10 +622,10 @@ var MenuWidgetComponent = (function () {
     return MenuWidgetComponent;
 }());
 MenuWidgetComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-menu-widget',
-        template: __webpack_require__(578),
-        styles: [__webpack_require__(550)]
+        template: __webpack_require__(754),
+        styles: [__webpack_require__(723)]
     }),
     __metadata("design:paramtypes", [])
 ], MenuWidgetComponent);
@@ -421,7 +634,7 @@ MenuWidgetComponent = __decorate([
 
 /***/ }),
 
-/***/ 336:
+/***/ 464:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -430,39 +643,39 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 336;
+webpackEmptyContext.id = 464;
 
 
 /***/ }),
 
-/***/ 337:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(503);
 
 
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* enableProdMode */])();
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
 
-/***/ 372:
+/***/ 500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__widgets_menu_widget_menu_widget_component__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__widgets_menu_widget_menu_widget_component__ = __webpack_require__(180);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -564,10 +777,10 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__(572),
-        styles: [__webpack_require__(546)]
+        template: __webpack_require__(748),
+        styles: [__webpack_require__(719)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["f" /* FooterService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["f" /* FooterService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["g" /* MenuService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["g" /* MenuService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["h" /* LogoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["h" /* LogoService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["j" /* NotificationsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["j" /* NotificationsService */]) === "function" && _e || Object])
 ], AppComponent);
@@ -577,25 +790,27 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
-/***/ 373:
+/***/ 501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_admin_lte__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home_component__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_page_num_page_num_component__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login_component__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_register_register_component__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_FMIWeather_FMIWeather_component__ = __webpack_require__(166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_WeatherServiceFMI__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_WeatherServiceYAHOO__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_routes__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__widgets_menu_widget_menu_widget_component__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(731);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home_component__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_page_num_page_num_component__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login_component__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_register_register_component__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_FMIWeather_FMIWeather_component__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_WeatherServiceFMI__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_WeatherServiceYAHOO__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_routes__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__widgets_menu_widget_menu_widget_component__ = __webpack_require__(180);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -611,6 +826,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // modules
 
+
 // les pages
 
 
@@ -621,11 +837,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var pages = [
-    __WEBPACK_IMPORTED_MODULE_6__pages_home_home_component__["a" /* HomeComponent */],
-    __WEBPACK_IMPORTED_MODULE_7__pages_page_num_page_num_component__["a" /* PageNumComponent */],
-    __WEBPACK_IMPORTED_MODULE_8__pages_login_login_component__["a" /* LoginComponent */],
-    __WEBPACK_IMPORTED_MODULE_9__pages_register_register_component__["a" /* RegisterComponent */],
-    __WEBPACK_IMPORTED_MODULE_10__pages_FMIWeather_FMIWeather_component__["a" /* FMIWeatherComponent */]
+    __WEBPACK_IMPORTED_MODULE_7__pages_home_home_component__["a" /* HomeComponent */],
+    __WEBPACK_IMPORTED_MODULE_8__pages_page_num_page_num_component__["a" /* PageNumComponent */],
+    __WEBPACK_IMPORTED_MODULE_9__pages_login_login_component__["a" /* LoginComponent */],
+    __WEBPACK_IMPORTED_MODULE_10__pages_register_register_component__["a" /* RegisterComponent */],
+    __WEBPACK_IMPORTED_MODULE_11__pages_FMIWeather_FMIWeather_component__["a" /* FMIWeatherComponent */]
 ];
 // main bootstrap
 
@@ -636,28 +852,29 @@ var AppModule = (function () {
     return AppModule;
 }());
 AppModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]
         ].concat(pages, [
-            __WEBPACK_IMPORTED_MODULE_14__widgets_menu_widget_menu_widget_component__["a" /* MenuWidgetComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__widgets_menu_widget_menu_widget_component__["a" /* MenuWidgetComponent */]
         ]),
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_5_ngx_admin_lte__["a" /* NgxAdminLteModule */],
-            __WEBPACK_IMPORTED_MODULE_13__app_routes__["a" /* routing */]
+            __WEBPACK_IMPORTED_MODULE_6_ng2_charts__["ChartsModule"],
+            __WEBPACK_IMPORTED_MODULE_14__app_routes__["a" /* routing */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_11__services_WeatherServiceFMI__["a" /* WeatherInfoServiceFMI */],
-            __WEBPACK_IMPORTED_MODULE_12__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */]
+            __WEBPACK_IMPORTED_MODULE_12__services_WeatherServiceFMI__["a" /* WeatherInfoServiceFMI */],
+            __WEBPACK_IMPORTED_MODULE_13__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */]
         ],
         bootstrap: [
             __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]
         ],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_14__widgets_menu_widget_menu_widget_component__["a" /* MenuWidgetComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__widgets_menu_widget_menu_widget_component__["a" /* MenuWidgetComponent */]
         ]
     })
 ], AppModule);
@@ -666,17 +883,17 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 374:
+/***/ 502:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_login_login_component__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_register_register_component__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home_component__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_page_num_page_num_component__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_FMIWeather_FMIWeather_component__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_login_login_component__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_register_register_component__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home_component__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_page_num_page_num_component__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_FMIWeather_FMIWeather_component__ = __webpack_require__(173);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
 
 
@@ -745,43 +962,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule 
 
 /***/ }),
 
-/***/ 375:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeatherInfoServiceYAHOO; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var WeatherInfoServiceYAHOO = (function () {
-    function WeatherInfoServiceYAHOO() {
-    }
-    return WeatherInfoServiceYAHOO;
-}());
-WeatherInfoServiceYAHOO = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
-], WeatherInfoServiceYAHOO);
-
-//# sourceMappingURL=WeatherServiceYAHOO.js.map
-
-/***/ }),
-
-/***/ 376:
+/***/ 503:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -798,10 +979,10 @@ var environment = {
 
 /***/ }),
 
-/***/ 546:
+/***/ 719:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -816,10 +997,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 547:
+/***/ 720:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -834,10 +1015,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 548:
+/***/ 721:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -852,10 +1033,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 549:
+/***/ 722:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -870,10 +1051,10 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 550:
+/***/ 723:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -888,62 +1069,308 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 572:
+/***/ 729:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 233,
+	"./af.js": 233,
+	"./ar": 240,
+	"./ar-dz": 234,
+	"./ar-dz.js": 234,
+	"./ar-kw": 235,
+	"./ar-kw.js": 235,
+	"./ar-ly": 236,
+	"./ar-ly.js": 236,
+	"./ar-ma": 237,
+	"./ar-ma.js": 237,
+	"./ar-sa": 238,
+	"./ar-sa.js": 238,
+	"./ar-tn": 239,
+	"./ar-tn.js": 239,
+	"./ar.js": 240,
+	"./az": 241,
+	"./az.js": 241,
+	"./be": 242,
+	"./be.js": 242,
+	"./bg": 243,
+	"./bg.js": 243,
+	"./bn": 244,
+	"./bn.js": 244,
+	"./bo": 245,
+	"./bo.js": 245,
+	"./br": 246,
+	"./br.js": 246,
+	"./bs": 247,
+	"./bs.js": 247,
+	"./ca": 248,
+	"./ca.js": 248,
+	"./cs": 249,
+	"./cs.js": 249,
+	"./cv": 250,
+	"./cv.js": 250,
+	"./cy": 251,
+	"./cy.js": 251,
+	"./da": 252,
+	"./da.js": 252,
+	"./de": 255,
+	"./de-at": 253,
+	"./de-at.js": 253,
+	"./de-ch": 254,
+	"./de-ch.js": 254,
+	"./de.js": 255,
+	"./dv": 256,
+	"./dv.js": 256,
+	"./el": 257,
+	"./el.js": 257,
+	"./en-au": 258,
+	"./en-au.js": 258,
+	"./en-ca": 259,
+	"./en-ca.js": 259,
+	"./en-gb": 260,
+	"./en-gb.js": 260,
+	"./en-ie": 261,
+	"./en-ie.js": 261,
+	"./en-nz": 262,
+	"./en-nz.js": 262,
+	"./eo": 263,
+	"./eo.js": 263,
+	"./es": 265,
+	"./es-do": 264,
+	"./es-do.js": 264,
+	"./es.js": 265,
+	"./et": 266,
+	"./et.js": 266,
+	"./eu": 267,
+	"./eu.js": 267,
+	"./fa": 268,
+	"./fa.js": 268,
+	"./fi": 269,
+	"./fi.js": 269,
+	"./fo": 270,
+	"./fo.js": 270,
+	"./fr": 273,
+	"./fr-ca": 271,
+	"./fr-ca.js": 271,
+	"./fr-ch": 272,
+	"./fr-ch.js": 272,
+	"./fr.js": 273,
+	"./fy": 274,
+	"./fy.js": 274,
+	"./gd": 275,
+	"./gd.js": 275,
+	"./gl": 276,
+	"./gl.js": 276,
+	"./gom-latn": 277,
+	"./gom-latn.js": 277,
+	"./he": 278,
+	"./he.js": 278,
+	"./hi": 279,
+	"./hi.js": 279,
+	"./hr": 280,
+	"./hr.js": 280,
+	"./hu": 281,
+	"./hu.js": 281,
+	"./hy-am": 282,
+	"./hy-am.js": 282,
+	"./id": 283,
+	"./id.js": 283,
+	"./is": 284,
+	"./is.js": 284,
+	"./it": 285,
+	"./it.js": 285,
+	"./ja": 286,
+	"./ja.js": 286,
+	"./jv": 287,
+	"./jv.js": 287,
+	"./ka": 288,
+	"./ka.js": 288,
+	"./kk": 289,
+	"./kk.js": 289,
+	"./km": 290,
+	"./km.js": 290,
+	"./kn": 291,
+	"./kn.js": 291,
+	"./ko": 292,
+	"./ko.js": 292,
+	"./ky": 293,
+	"./ky.js": 293,
+	"./lb": 294,
+	"./lb.js": 294,
+	"./lo": 295,
+	"./lo.js": 295,
+	"./lt": 296,
+	"./lt.js": 296,
+	"./lv": 297,
+	"./lv.js": 297,
+	"./me": 298,
+	"./me.js": 298,
+	"./mi": 299,
+	"./mi.js": 299,
+	"./mk": 300,
+	"./mk.js": 300,
+	"./ml": 301,
+	"./ml.js": 301,
+	"./mr": 302,
+	"./mr.js": 302,
+	"./ms": 304,
+	"./ms-my": 303,
+	"./ms-my.js": 303,
+	"./ms.js": 304,
+	"./my": 305,
+	"./my.js": 305,
+	"./nb": 306,
+	"./nb.js": 306,
+	"./ne": 307,
+	"./ne.js": 307,
+	"./nl": 309,
+	"./nl-be": 308,
+	"./nl-be.js": 308,
+	"./nl.js": 309,
+	"./nn": 310,
+	"./nn.js": 310,
+	"./pa-in": 311,
+	"./pa-in.js": 311,
+	"./pl": 312,
+	"./pl.js": 312,
+	"./pt": 314,
+	"./pt-br": 313,
+	"./pt-br.js": 313,
+	"./pt.js": 314,
+	"./ro": 315,
+	"./ro.js": 315,
+	"./ru": 316,
+	"./ru.js": 316,
+	"./sd": 317,
+	"./sd.js": 317,
+	"./se": 318,
+	"./se.js": 318,
+	"./si": 319,
+	"./si.js": 319,
+	"./sk": 320,
+	"./sk.js": 320,
+	"./sl": 321,
+	"./sl.js": 321,
+	"./sq": 322,
+	"./sq.js": 322,
+	"./sr": 324,
+	"./sr-cyrl": 323,
+	"./sr-cyrl.js": 323,
+	"./sr.js": 324,
+	"./ss": 325,
+	"./ss.js": 325,
+	"./sv": 326,
+	"./sv.js": 326,
+	"./sw": 327,
+	"./sw.js": 327,
+	"./ta": 328,
+	"./ta.js": 328,
+	"./te": 329,
+	"./te.js": 329,
+	"./tet": 330,
+	"./tet.js": 330,
+	"./th": 331,
+	"./th.js": 331,
+	"./tl-ph": 332,
+	"./tl-ph.js": 332,
+	"./tlh": 333,
+	"./tlh.js": 333,
+	"./tr": 334,
+	"./tr.js": 334,
+	"./tzl": 335,
+	"./tzl.js": 335,
+	"./tzm": 337,
+	"./tzm-latn": 336,
+	"./tzm-latn.js": 336,
+	"./tzm.js": 337,
+	"./uk": 338,
+	"./uk.js": 338,
+	"./ur": 339,
+	"./ur.js": 339,
+	"./uz": 341,
+	"./uz-latn": 340,
+	"./uz-latn.js": 340,
+	"./uz.js": 341,
+	"./vi": 342,
+	"./vi.js": 342,
+	"./x-pseudo": 343,
+	"./x-pseudo.js": 343,
+	"./yo": 344,
+	"./yo.js": 344,
+	"./zh-cn": 345,
+	"./zh-cn.js": 345,
+	"./zh-hk": 346,
+	"./zh-hk.js": 346,
+	"./zh-tw": 347,
+	"./zh-tw.js": 347
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 729;
+
+
+/***/ }),
+
+/***/ 748:
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 
-/***/ 573:
+/***/ 749:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container-fluid\">\n    <div class=\"row\">\n     \n      \n        <h1>Local Weather Web Site</h1>\n\n        <section class=\"row text-center placeholders\">\n          <div class=\"col-6 col-sm-3 placeholder\">     \n                     \n            <img src= {{imglink}} width=\"200\" height=\"200\" class=\"img-fluid rounded-circle\" alt=\"Generic placeholder thumbnail\">\n            <h4>{{city}}</h4>\n            <div class=\"text-muted\">{{weatherInfos[0].time}}</div>\n          </div>\n        </section>\n\n        <h2>Last Observations</h2>\n        <div class=\"table-responsive\">\n          <table class=\"table table-striped\">\n            <thead>\n              <tr>                \n                <th>Time (10M Interval)</th>\n                <th>Temperature</th>\n                <th>Visibility</th>\n                <th>Pressure</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor = \"let weatherInfo of weatherInfos\">                 \n                <td>{{weatherInfo.time}}</td>\n                <td>{{weatherInfo.temperature}}</td>\n                <td>{{weatherInfo.vis}}</td>\n                <td>{{weatherInfo.pressure}}</td>                  \n              </tr>            \n            </tbody>\n          </table>\n        </div>\n     \n    </div>\n  </div>"
 
 /***/ }),
 
-/***/ 574:
+/***/ 750:
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n<div class=\"main_pg_sutun_genis\">\n\t<div class=\"tahmin acik\" id=\"t1\">\n\t\t<div class=\"tahminAcikKapali\">\n\t\t\t<div class=\"tahminSol\">\n\t\t\t\t<div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun1 | meteorDateFormatGun\">Pazar</div>\n\t\t\t\t<div class=\"tahminIkon\">\n\t\t\t\t\t<img src=\"Images_Sys/hadiseler/Y.svg\" ng-src=\"Images_Sys/hadiseler/Y.svg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun1Adi\">Yağmurlu</div>\n\t\t\t\t<div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun1 | kaliteKontrol\">4</span><span class=\"derece\">°C</span></div>\n\t\t\t\t<div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun1 | kaliteKontrol\">10</span><span class=\"derece\">°C</span></div>\n\t\t\t</div>\n\t\t\t<div class=\"tahminSag\">\n\t\t\t\t<div class=\"nem\">Nem (%)</div>\n\t\t\t\t<div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun1 | kaliteKontrol\">54</span>-<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekNemGun1 | kaliteKontrol\">90</span></div>\n\t\t\t\t<div class=\"ruzgar\">Rüzgar (km/sa)</div>\n\t\t\t\t<div class=\"ruzgarYon\">\n\t\t\t\t\t<img id=\"imgRuzgaryonGunluk1\" style=\"transform: rotate(71deg);\" src=\"Images_Sys/ruzgaryon1.png\"><br>\n\t\t\t\t\t<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarYonGun1Adi\">Doğudan</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ruzgarDeger\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun1 | kaliteKontrol\">16</span></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"tahmin\" id=\"t2\">\n\t\t<div class=\"tahminAcikKapali\">\n\t\t\t<div class=\"tahminSol\">\n\t\t\t\t<div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun2 | meteorDateFormatGun\">Pazartesi</div>\n\t\t\t\t<div class=\"tahminIkon\">\n\t\t\t\t\t<img src=\"Images_Sys/hadiseler/CB.svg\" ng-src=\"Images_Sys/hadiseler/CB.svg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun2Adi\">Çok Bulutlu</div>\n\t\t\t\t<div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun2 | kaliteKontrol\">5</span><span class=\"derece\">°C</span></div>\n\t\t\t\t<div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun2 | kaliteKontrol\">11</span><span class=\"derece\">°C</span></div>\n\t\t\t</div>\n\t\t\t<div class=\"tahminSag\">\n\t\t\t\t<div class=\"nem\">Nem (%)</div>\n\t\t\t\t<div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun2 | kaliteKontrol\">63</span>-<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekNemGun2 | kaliteKontrol\">96</span></div>\n\t\t\t\t<div class=\"ruzgar\">Rüzgar (km/sa)</div>\n\t\t\t\t<div class=\"ruzgarYon\">\n\t\t\t\t\t<img id=\"imgRuzgaryonGunluk2\" style=\"transform: rotate(245deg);\" src=\"Images_Sys/ruzgaryon1.png\"><br>\n\t\t\t\t\t<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarYonGun2Adi\">Güneybatıdan</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ruzgarDeger\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun2 | kaliteKontrol\">15</span></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"tahmin\" id=\"t3\">\n\t\t<div class=\"tahminAcikKapali\">\n\t\t\t<div class=\"tahminSol\">\n\t\t\t\t<div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun3 | meteorDateFormatGun\">Salı</div>\n\t\t\t\t<div class=\"tahminIkon\">\n\t\t\t\t\t<img src=\"./icons/AB.svg\" ng-src=\"./icons/AB.svg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun3Adi\">Az Bulutlu</div>\n\t\t\t\t<div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun3 | kaliteKontrol\">2</span><span class=\"derece\">°C</span></div>\n\t\t\t\t<div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun3 | kaliteKontrol\">14</span><span class=\"derece\">°C</span></div>\n\t\t\t</div>\n\t\t\t<div class=\"tahminSag\">\n\t\t\t\t<div class=\"nem\">Nem (%)</div>\n\t\t\t\t<div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun3 | kaliteKontrol\">44</span>-<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekNemGun3 | kaliteKontrol\">90</span></div>\n\t\t\t\t<div class=\"ruzgar\">Rüzgar (km/sa)</div>\n\t\t\t\t<div class=\"ruzgarYon\">\n\t\t\t\t\t<img id=\"imgRuzgaryonGunluk3\" style=\"transform: rotate(100deg);\" src=\"Images_Sys/ruzgaryon1.png\"><br>\n\t\t\t\t\t<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarYonGun3Adi\">Doğudan</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ruzgarDeger\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun3 | kaliteKontrol\">6</span></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"tahmin\" id=\"t4\">\n\t\t<div class=\"tahminAcikKapali\">\n\t\t\t<div class=\"tahminSol\">\n\t\t\t\t<div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun4 | meteorDateFormatGun\">Çarşamba</div>\n\t\t\t\t<div class=\"tahminIkon\">\n\t\t\t\t\t<img src=\"Images_Sys/hadiseler/AB.svg\" ng-src=\"Images_Sys/hadiseler/AB.svg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun4Adi\">Az Bulutlu</div>\n\t\t\t\t<div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun4 | kaliteKontrol\">2</span><span class=\"derece\">°C</span></div>\n\t\t\t\t<div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun4 | kaliteKontrol\">14</span><span class=\"derece\">°C</span></div>\n\t\t\t</div>\n\t\t\t<div class=\"tahminSag\">\n\t\t\t\t<div class=\"nem\">Nem (%)</div>\n\t\t\t\t<div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun4 | kaliteKontrol\">39</span>-<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekNemGun4 | kaliteKontrol\">84</span></div>\n\t\t\t\t<div class=\"ruzgar\">Rüzgar (km/sa)</div>\n\t\t\t\t<div class=\"ruzgarYon\">\n\t\t\t\t\t<img id=\"imgRuzgaryonGunluk4\" style=\"transform: rotate(83deg);\" src=\"Images_Sys/ruzgaryon1.png\"><br>\n\t\t\t\t\t<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarYonGun4Adi\">Doğudan</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ruzgarDeger\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun4 | kaliteKontrol\">6</span></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"tahmin\" id=\"t5\">\n\t\t<div class=\"tahminAcikKapali\">\n\t\t\t<div class=\"tahminSol\">\n\t\t\t\t<div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun5 | meteorDateFormatGun\">Perşembe</div>\n\t\t\t\t<div class=\"tahminIkon\">\n\t\t\t\t\t<img src=\"Images_Sys/hadiseler/PB.svg\" ng-src=\"Images_Sys/hadiseler/PB.svg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun5Adi\">Parçalı Bulutlu</div>\n\t\t\t\t<div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun5 | kaliteKontrol\">3</span><span class=\"derece\">°C</span></div>\n\t\t\t\t<div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun5 | kaliteKontrol\">16</span><span class=\"derece\">°C</span></div>\n\t\t\t</div>\n\t\t\t<div class=\"tahminSag\">\n\t\t\t\t<div class=\"nem\">Nem (%)</div>\n\t\t\t\t<div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun5 | kaliteKontrol\">34</span>-<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekNemGun5 | kaliteKontrol\">77</span></div>\n\t\t\t\t<div class=\"ruzgar\">Rüzgar (km/sa)</div>\n\t\t\t\t<div class=\"ruzgarYon\">\n\t\t\t\t\t<img id=\"imgRuzgaryonGunluk5\" style=\"transform: rotate(219deg);\" src=\"Images_Sys/ruzgaryon1.png\">\n\t\t\t\t\t<br>\n\t\t\t\t\t<span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarYonGun5Adi\">Güneybatıdan</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ruzgarDeger\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun5 | kaliteKontrol\">8</span></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div class=\"clr\"></div>\n</div>\n</section>\n<section>\n\t\n\t\t\n\t\t<div class=\"w3-row\">\n\n\t\t\tasdasd\n\t\t</div>\n\t  \n</section>"
+module.exports = "<div class=\"panel panel-info\">\n\t\t<div class=\"panel-heading\">{{weatherInfos.query.results.channel.title}} ( 5 days forecast )</div>\n\t\t<div class=\"panel-body\">\n\t\t\t<div class=\"container\"><div class=\"left\"><div class=\"forecast\">\n\t\t\t\t<div class=\"main_pg_sutun_genis\">\n                        <div class=\"tahmin acik\" id=\"t1\">\n                            <div class=\"tahminAcikKapali\">\n                                <div class=\"tahminSol\">\n                                <div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun1 | meteorDateFormatGun\">{{weatherInfos.query.results.channel.item.forecast[0].day}}</div>\n                                    <div class=\"tahminIkon\">\n                                        <img src= {{imglink1}} ng-src=\"Images_Sys/hadiseler/Y.svg\">\n                                    </div>\n                                    <div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun1Adi\">{{weatherInfos.query.results.channel.item.forecast[0].text}}</div>\n                                    <div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun1 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[0].low}}</span><span class=\"derece\">°C</span></div>\n                                    <div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun1 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[0].high}}</span><span class=\"derece\">°C</span></div>\n                                </div>\n                                <div class=\"tahminSag\">\n                                    <div class=\"nem\">Humidity (%)</div>\n                                    <div class=\"deger\"><span class=\"ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukNemGun1 | kaliteKontrol\">{{weatherInfos.query.results.channel.atmosphere.humidity}}</span></div>\n                                    <div class=\"ruzgar\">Wind (speed)</div>\n                                    <div><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].ruzgarHizGun1 | kaliteKontrol\">{{weatherInfos.query.results.channel.wind.speed}}</span></div>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"tahmin\" id=\"t2\">\n                            <div class=\"tahminAcikKapali\">\n                                <div class=\"tahminSol\">\n                                    <div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun2 | meteorDateFormatGun\">{{weatherInfos.query.results.channel.item.forecast[1].day}}</div>\n                                    <div class=\"tahminIkon\">\n                                        <img src= {{imglink2}} ng-src=\"Images_Sys/hadiseler/CB.svg\">\n                                    </div>\n                                    <div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun2Adi\">{{weatherInfos.query.results.channel.item.forecast[1].text}}</div>\n                                    <div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun2 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[1].low}}</span><span class=\"derece\">°C</span></div>\n                                    <div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun2 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[1].high}}</span><span class=\"derece\">°C</span></div>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"tahmin\" id=\"t3\">\n                            <div class=\"tahminAcikKapali\">\n                                <div class=\"tahminSol\">\n                                    <div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun3 | meteorDateFormatGun\">{{weatherInfos.query.results.channel.item.forecast[2].day}}</div>\n                                    <div class=\"tahminIkon\">\n                                        <img src= {{imglink3}} ng-src=\"./icons/AB.svg\">\n                                    </div>\n                                    <div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun3Adi\">{{weatherInfos.query.results.channel.item.forecast[2].text}}</div>\n                                    <div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun3 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[2].low}}</span><span class=\"derece\">°C</span></div>\n                                    <div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun3 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[2].high}}</span><span class=\"derece\">°C</span></div>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"tahmin\" id=\"t4\">\n                            <div class=\"tahminAcikKapali\">\n                                <div class=\"tahminSol\">\n                                    <div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun4 | meteorDateFormatGun\">{{weatherInfos.query.results.channel.item.forecast[3].day}}</div>\n                                    <div class=\"tahminIkon\">\n                                        <img src= {{imglink4}} ng-src=\"Images_Sys/hadiseler/AB.svg\">\n                                    </div>\n                                    <div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun4Adi\">{{weatherInfos.query.results.channel.item.forecast[3].text}}</div>\n                                    <div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun4 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[3].low}}</span><span class=\"derece\">°C</span></div>\n                                    <div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun4 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[3].high}}</span><span class=\"derece\">°C</span></div>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"tahmin\" id=\"t5\">\n                            <div class=\"tahminAcikKapali\">\n                                <div class=\"tahminSol\">\n                                    <div class=\"tahminTarih ng-binding\" ng-bind=\"gunlukTahmin[0].tarihGun5 | meteorDateFormatGun\">{{weatherInfos.query.results.channel.item.forecast[4].day}}</div>\n                                    <div class=\"tahminIkon\">\n                                        <img src= {{imglink5}} ng-src=\"Images_Sys/hadiseler/PB.svg\">\n                                    </div>\n                                    <div class=\"tahminHadise ng-binding\" ng-bind=\"gunlukTahmin[0].hadiseGun5Adi\">{{weatherInfos.query.results.channel.item.forecast[4].text}}</div>\n                                    <div class=\"tahminMin\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enDusukGun5 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[4].low}}</span><span class=\"derece\">°C</span></div>\n                                    <div class=\"tahminMax\"><span class=\"deger ng-binding\" ng-bind=\"gunlukTahmin[0].enYuksekGun5 | kaliteKontrol\">{{weatherInfos.query.results.channel.item.forecast[4].high}}</span><span class=\"derece\">°C</span></div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"clr\"></div>\n                    </div>\n                </div></div></div>\n\t\t</div>\n\t  </div>\n\n\t  <div class=\"panel panel-info\">\n\t\t<div class=\"panel-heading\">\n\t\t  <h3 class=\"panel-title\">Forecasting Low/High temperature graph </h3>\n\t\t</div>\n\t\t<div class=\"panel-body\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\">\n                  <div style=\"display: block;\">\n                  <canvas baseChart width=\"150\" height=\"200\"\n                              [datasets]=\"lineChartData\"\n                              [labels]=\"lineChartLabels\"\n                              [options]=\"lineChartOptions\"\n                              [colors]=\"lineChartColors\"\n                              [legend]=\"lineChartLegend\"\n                              [chartType]=\"lineChartType\"\n                              (chartHover)=\"chartHovered($event)\"\n                              (chartClick)=\"chartClicked($event)\"></canvas>\n                  </div>\n                </div>\n              </div>\n            \n\t\t</div>\n\t  </div>\n"
 
 /***/ }),
 
-/***/ 575:
+/***/ 751:
 /***/ (function(module, exports) {
 
 module.exports = "<p class=\"login-box-msg\">Sign in to start your session</p>\n\n<form>\n\n  <div class=\"form-group has-feedback\">\n    <input type=\"email\" class=\"form-control\" placeholder=\"Email\" required minlength=\"8\" name=\"eml\" [(ngModel)]=\"email\" #eml=\"ngModel\">\n    <span class=\"glyphicon glyphicon-envelope form-control-feedback\"></span>\n    <div *ngIf=\"eml.errors && (eml.dirty || eml.touched)\" class=\"alert alert-danger\">\n        <div [hidden]=\"!eml.errors.required\">\n          E-mail control!(not active in demo)\n        </div>\n        <div [hidden]=\"!eml.errors.minlength\">\n          E-mail control!(not active in demo)\n        </div>\n    </div>\n  </div>\n\n  <div class=\"form-group has-feedback\">\n    <input type=\"password\" class=\"form-control\" placeholder=\"Password\" required minlength=\"8\" name=\"passwd\" [(ngModel)]=\"password\" #passwd=\"ngModel\">\n    <span class=\"glyphicon glyphicon-lock form-control-feedback\"></span>\n    <div *ngIf=\"passwd.errors && (passwd.dirty || passwd.touched)\"\n         class=\"alert alert-danger\">\n        <div [hidden]=\"!passwd.errors.required\">\n           Password control!(not active in demo)\n        </div>\n        <div [hidden]=\"!passwd.errors.minlength\">\n           Password control!(not active in demo)\n        </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-8\">\n      <div class=\"checkbox icheck icheckbox_square-blue\">\n        <label>\n          <input type=\"checkbox\"> Remember Me\n        </label>\n      </div>\n    </div>\n    <!-- /.col -->\n    <div class=\"col-xs-4\">\n      <button type=\"submit\" class=\"btn btn-primary btn-block btn-flat\" (click)=\"login()\" >Sign In</button>\n    </div>\n    <!-- /.col -->\n  </div>\n\n</form>\n\n<!--div class=\"social-auth-links text-center\">\n  <p>- OR -</p>\n  <a href=\"#\" class=\"btn btn-block btn-social btn-facebook btn-flat\"><i class=\"fa fa-facebook\"></i> Sign in using\n    Facebook</a>\n  <a href=\"#\" class=\"btn btn-block btn-social btn-google btn-flat\"><i class=\"fa fa-google-plus\"></i> Sign in using\n    Google+</a>\n</div>\n<!-- /.social-auth-links -->\n<p>No need to registration in demo version --> Press sign in </p>\n<a href=\"#\">I forgot my password</a><br>\n<a routerLink=\"/register\" class=\"text-center\">Register a new membership</a>\n"
 
 /***/ }),
 
-/***/ 576:
+/***/ 752:
 /***/ (function(module, exports) {
 
 module.exports = "<p>page {{id}} works!</p>\n"
 
 /***/ }),
 
-/***/ 577:
+/***/ 753:
 /***/ (function(module, exports) {
 
 module.exports = "<p class=\"login-box-msg\">Register a new membership</p>\n\n<form action=\"../../index.html\" method=\"post\">\n  <div class=\"form-group has-feedback\">\n    <input type=\"text\" class=\"form-control\" placeholder=\"Full name\">\n    <span class=\"glyphicon glyphicon-user form-control-feedback\"></span>\n  </div>\n  <div class=\"form-group has-feedback\">\n    <input type=\"email\" class=\"form-control\" placeholder=\"Email\">\n    <span class=\"glyphicon glyphicon-envelope form-control-feedback\"></span>\n  </div>\n  <div class=\"form-group has-feedback\">\n    <input type=\"password\" class=\"form-control\" placeholder=\"Password\">\n    <span class=\"glyphicon glyphicon-lock form-control-feedback\"></span>\n  </div>\n  <div class=\"form-group has-feedback\">\n    <input type=\"password\" class=\"form-control\" placeholder=\"Retype password\">\n    <span class=\"glyphicon glyphicon-log-in form-control-feedback\"></span>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-8\">\n      <div class=\"checkbox icheck\">\n        <label>\n          <input type=\"checkbox\"> I agree to the <a href=\"#\">terms</a>\n        </label>\n      </div>\n    </div>\n    <!-- /.col -->\n    <div class=\"col-xs-4\">\n      <button type=\"submit\" class=\"btn btn-primary btn-block btn-flat\">Register</button>\n    </div>\n    <!-- /.col -->\n  </div>\n</form>\n\n<div class=\"social-auth-links text-center\">\n  <p>- OR -</p>\n  <a href=\"#\" class=\"btn btn-block btn-social btn-facebook btn-flat\"><i class=\"fa fa-facebook\"></i> Sign up using\n    Facebook</a>\n  <a href=\"#\" class=\"btn btn-block btn-social btn-google btn-flat\"><i class=\"fa fa-google-plus\"></i> Sign up using\n    Google+</a>\n</div>\n\n<a routerLink=\"/login\" class=\"text-center\">I already have a membership</a>\n"
 
 /***/ }),
 
-/***/ 578:
+/***/ 754:
 /***/ (function(module, exports) {
 
 module.exports = "<li>\n    <i class=\"fa fa-user\"></i>\n    <span>{{label}}</span>\n</li>\n"
 
-/***/ }),
-
-/***/ 859:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(337);
-
-
 /***/ })
 
-},[859]);
+},[1036]);
 //# sourceMappingURL=main.bundle.js.map

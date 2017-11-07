@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 // modules
 import { NgxAdminLteModule } from 'ngx-admin-lte';
-
+import { ChartsModule } from 'ng2-charts';
 // les pages
 import { HomeComponent } from './pages/home/home.component';
 import { PageNumComponent } from './pages/page-num/page-num.component';
@@ -42,6 +42,7 @@ import { MenuWidgetComponent } from './widgets/menu-widget/menu-widget.component
     FormsModule,
     HttpModule,
     NgxAdminLteModule,
+    ChartsModule,
     routing
   ],
   providers: [
