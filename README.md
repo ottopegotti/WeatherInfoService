@@ -22,8 +22,9 @@ Additional features are of course a plus but not required
 Source code & app should be shared for review (GIT repocitory etc)
 https://github.com/ottopegotti/WeatherInfoService/
 
-## Demo view from my local machine
+## Demo view 
 ![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/local_demo.PNG)
+![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/heroku_demo.PNG)
 ## Lauching with node > 7 locally installed
 ```
 npm install
