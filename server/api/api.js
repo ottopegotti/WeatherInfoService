@@ -14,15 +14,18 @@ exports.GetLocalWeatherInfoFMI = (req, res)=>{
          fmiApi.GetWeatherInfo(city)
          .then((result)=>{
             res.json(JSON.stringify(result));
+            res.status(200).end();
          })
          .catch(err=>{
              console.log(err);
              res.json(new Error("FMI Weather Service hasn't been succeeded!"));
+             res.end();
         });          
     })
     .catch(err=>{
         console.log(err);
         res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+        res.end();
     });       
 };
 
@@ -38,11 +41,13 @@ exports.GetLocalWeatherInfoYAHOO = (req, res)=>{
         .catch(err=>{
             console.log(err);
             res.json(new Error("Yahoo weather service hasn't been succeeded!"));
+            res.end();
         });              
     })
     .catch(err=>{
         console.log(err);
         res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+        res.end();
     });     
 };
 
@@ -56,6 +61,7 @@ exports.GetCity=(req,res)=>{
     .catch(err=>{
         console.log(err);
         res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+        res.end();
     });   
 }
 
