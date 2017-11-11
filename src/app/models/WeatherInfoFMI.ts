@@ -1,3 +1,4 @@
+
 export  class WeatherInfoFMI{
       time:Date;
       temperature:number;

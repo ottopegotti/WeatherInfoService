@@ -20,6 +20,12 @@ export  class WeatherInfoServiceFMI {
     return this.http.get(url)
       .map((response:Response) => JSON.parse(response.json()));        
   } 
+
+  GetWeatherInfo2nd(latitude:number,longitude:number): Observable<Response> {
+    const url = `${this.weatherInfoUrl}`+"/getweatherFMI/"+`${latitude}/${longitude}`;
+    return this.http.get(url);
+            
+  }
   
   GetCity(latitude:number,longitude:number):Promise<string> {
     const url = `${this.weatherInfoUrl}`+"/getcity/"+`${latitude}/${longitude}`;      

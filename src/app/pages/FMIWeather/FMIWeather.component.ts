@@ -22,7 +22,7 @@ export class FMIWeatherComponent implements OnInit, OnDestroy {
     private weatherInfoServiceFMI:WeatherInfoServiceFMI) 
     {   
       
-  }
+    }
 
 public GetWeatherInfo(){    
     this.weatherInfoServiceFMI.GetWeatherInfo(this.latitude,this.longitude)
@@ -31,7 +31,13 @@ public GetWeatherInfo(){
         error=>this.HandleError(error)
       );  
   }
-
+  public GetWeatherInfo2nd(){    
+    this.weatherInfoServiceFMI.GetWeatherInfo2nd(this.latitude,this.longitude)
+      .subscribe(
+        data=>this.weatherInfos= JSON.parse(data.json()),
+        error=>this.HandleError(error)
+      );  
+  }
   public GetCity(){    
     this.weatherInfoServiceFMI.GetCity(this.latitude,this.longitude)
       .then((city)=>{
@@ -57,6 +63,7 @@ public GetWeatherInfo(){
         }
       ]
     });
+    
     new Promise((resolve,reject)=>{
       navigator.geolocation.watchPosition(
         (position)=> resolve(position),
@@ -69,7 +76,7 @@ public GetWeatherInfo(){
     })
     .then(_=>{
         this.GetCity();
-        this.GetWeatherInfo();
+        this.GetWeatherInfo2nd();
     })
     .catch((err)=>this.HandleError(err)); 
 

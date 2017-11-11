@@ -15,11 +15,15 @@ exports.GetLocalWeatherInfoFMI = (req, res)=>{
          .then((result)=>{
             res.json(JSON.stringify(result));
          })
-         .catch(err=>console.log(err));          
+         .catch(err=>{
+             console.log(err);
+             res.json(new Error("FMI Weather Service hasn't been succeeded!"));
+        });          
     })
-    .catch((err)=>{
+    .catch(err=>{
         console.log(err);
-    });   
+        res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+    });       
 };
 
 // api/getweatherinfoYAHOO/:latitude/:longitude
@@ -31,11 +35,15 @@ exports.GetLocalWeatherInfoYAHOO = (req, res)=>{
          .then((result)=>{
             res.json(JSON.stringify(result));
          })
-         .catch(err=>console.log(err));          
+        .catch(err=>{
+            console.log(err);
+            res.json(new Error("Yahoo weather service hasn't been succeeded!"));
+        });              
     })
-    .catch((err)=>{
+    .catch(err=>{
         console.log(err);
-    });   
+        res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+    });     
 };
 
 
@@ -45,9 +53,10 @@ exports.GetCity=(req,res)=>{
     .then((result)=>{
         res.json((result[0].city==undefined)?result[0].extra.neighborhood:result[0].city);        
     })      
-    .catch((err)=>{
+    .catch(err=>{
         console.log(err);
-    });  
+        res.json(new Error("Reverse geo coding hasn't been succeeded!"));
+    });   
 }
 
 exports.login = function (req, res) {

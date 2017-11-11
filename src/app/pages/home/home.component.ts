@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService , Message , MessagesService , User } from 'ngx-admin-lte';
 import {WeatherInfoServiceYAHOO} from '../../services/WeatherServiceYAHOO';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   styleUrls: ['./home.component.css'],
@@ -106,7 +106,8 @@ public chartHovered(e:any):void {
 
   constructor(private weatherInfoServiceYAHOO:WeatherInfoServiceYAHOO,
     private msgServ: MessagesService,
-    private breadServ: BreadcrumbService
+    private breadServ: BreadcrumbService,
+    private router: Router
   ) {
     // TODO
   }
@@ -183,7 +184,9 @@ public chartHovered(e:any):void {
     new Promise((resolve,reject)=>{
       navigator.geolocation.watchPosition(
         (position)=> resolve(position),
-        (err)=>reject(err)
+        (err)=>{
+          reject("Retrieving Geolocation problem on your browser!");
+        },{timeout:10000}  
       );   
     })
     .then((position:Position)=>{
@@ -196,7 +199,6 @@ public chartHovered(e:any):void {
     })
     .catch((err)=>this.HandleError(err)); 
 
-
   }
 
   public ngOnDestroy() {
@@ -205,6 +207,7 @@ public chartHovered(e:any):void {
   }
   public HandleError(error:any){
     alert(error);
+    this.router.navigate( ['login'] );
   }  
   
 

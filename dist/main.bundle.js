@@ -39,6 +39,11 @@ var FMIWeatherComponent = (function () {
         this.weatherInfoServiceFMI.GetWeatherInfo(this.latitude, this.longitude)
             .subscribe(function (data) { return _this.weatherInfos = data; }, function (error) { return _this.HandleError(error); });
     };
+    FMIWeatherComponent.prototype.GetWeatherInfo2nd = function () {
+        var _this = this;
+        this.weatherInfoServiceFMI.GetWeatherInfo2nd(this.latitude, this.longitude)
+            .subscribe(function (data) { return _this.weatherInfos = JSON.parse(data.json()); }, function (error) { return _this.HandleError(error); });
+    };
     FMIWeatherComponent.prototype.GetCity = function () {
         var _this = this;
         this.weatherInfoServiceFMI.GetCity(this.latitude, this.longitude)
@@ -75,7 +80,7 @@ var FMIWeatherComponent = (function () {
         })
             .then(function (_) {
             _this.GetCity();
-            _this.GetWeatherInfo();
+            _this.GetWeatherInfo2nd();
         })
             .catch(function (err) { return _this.HandleError(err); });
     };
@@ -108,6 +113,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(28);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -121,12 +127,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = (function () {
     ////////////////
-    function HomeComponent(weatherInfoServiceYAHOO, msgServ, breadServ) {
+    function HomeComponent(weatherInfoServiceYAHOO, msgServ, breadServ, router) {
         this.weatherInfoServiceYAHOO = weatherInfoServiceYAHOO;
         this.msgServ = msgServ;
         this.breadServ = breadServ;
+        this.router = router;
         //////Chart
         /*
         public lineChartData:Array<any> = [
@@ -274,7 +282,9 @@ var HomeComponent = (function () {
             ]
         });
         new Promise(function (resolve, reject) {
-            navigator.geolocation.watchPosition(function (position) { return resolve(position); }, function (err) { return reject(err); });
+            navigator.geolocation.watchPosition(function (position) { return resolve(position); }, function (err) {
+                reject("Retrieving Geolocation problem on your browser!");
+            }, { timeout: 10000 });
         })
             .then(function (position) {
             _this.latitude = position.coords.latitude;
@@ -292,6 +302,7 @@ var HomeComponent = (function () {
     };
     HomeComponent.prototype.HandleError = function (error) {
         alert(error);
+        this.router.navigate(['login']);
     };
     return HomeComponent;
 }());
@@ -301,10 +312,10 @@ HomeComponent = __decorate([
         styles: [__webpack_require__(721)],
         template: __webpack_require__(750)
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_WeatherServiceYAHOO__["a" /* WeatherInfoServiceYAHOO */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["i" /* MessagesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__["k" /* BreadcrumbService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], HomeComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
@@ -315,7 +326,7 @@ var _a, _b, _c;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(28);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -378,7 +389,7 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_admin_lte__ = __webpack_require__(48);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNumComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -516,6 +527,10 @@ var WeatherInfoServiceFMI = (function () {
         var url = "" + this.weatherInfoUrl + "/getweatherFMI/" + (latitude + "/" + longitude);
         return this.http.get(url)
             .map(function (response) { return JSON.parse(response.json()); });
+    };
+    WeatherInfoServiceFMI.prototype.GetWeatherInfo2nd = function (latitude, longitude) {
+        var url = "" + this.weatherInfoUrl + "/getweatherFMI/" + (latitude + "/" + longitude);
+        return this.http.get(url);
     };
     WeatherInfoServiceFMI.prototype.GetCity = function (latitude, longitude) {
         var _this = this;
@@ -887,7 +902,7 @@ AppModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_admin_lte__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_login_login_component__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_register_register_component__ = __webpack_require__(177);
