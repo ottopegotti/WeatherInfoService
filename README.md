@@ -3,19 +3,23 @@
 In the development phase, I implemented server side and client side as different projects.
 I combined those two projects for deploying to heroku under single address. 
 
-Files coded by me
+## Files coded by me
 Server side (Node.js application)
 ------------
+```
 /server.js
 /api/*
 /src
+```
 
-Client side (Angular 4 app)
+## Client side (Angular 4 app)
 ------------
+```
 /src/models/*
 /src/services/*
 /src/pages/FMIWeather/*
 /src/pages/home/*
+```
 
 What this app does?
 Get GPS location through Phone location API via HTML5 Geocoding API. 
