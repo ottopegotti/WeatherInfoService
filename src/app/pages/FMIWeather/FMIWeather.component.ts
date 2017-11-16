@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreadcrumbService , Message , MessagesService , User } from 'ngx-admin-lte';
-import {WeatherInfoServiceFMI} from '../../services/WeatherServiceFMI';
-import {WeatherInfoFMI} from '../../models/WeatherInfoFMI';
+import { BreadcrumbService, Message, MessagesService, User } from 'ngx-admin-lte';
+import { WeatherInfoServiceFMI } from '../../services/WeatherServiceFMI';
+import { WeatherInfoFMI } from '../../models/WeatherInfoFMI';
 
 @Component({
   selector: 'app-fmi',
@@ -14,41 +14,40 @@ export class FMIWeatherComponent implements OnInit, OnDestroy {
   public longitude: number;
   public city: string;
   public weatherInfos: WeatherInfoFMI[];
-  public  imglink:string;
+  public imglink: string;
 
   constructor(
     private msgServ: MessagesService,
     private breadServ: BreadcrumbService,
-    private weatherInfoServiceFMI:WeatherInfoServiceFMI) 
-    {   
-      
-    }
+    private weatherInfoServiceFMI: WeatherInfoServiceFMI) {
 
-public GetWeatherInfo(){    
-    this.weatherInfoServiceFMI.GetWeatherInfo(this.latitude,this.longitude)
-      .subscribe(
-        data=>this.weatherInfos= data,
-        error=>this.HandleError(error)
-      );  
   }
-  public GetWeatherInfo2nd(){    
-    this.weatherInfoServiceFMI.GetWeatherInfo2nd(this.latitude,this.longitude)
+
+  public GetWeatherInfo() {
+    this.weatherInfoServiceFMI.GetWeatherInfo(this.latitude, this.longitude)
       .subscribe(
-        data=>this.weatherInfos= JSON.parse(data.json()),
-        error=>this.HandleError(error)
-      );  
+      data => this.weatherInfos = data,
+      error => this.HandleError(error)
+      );
   }
-  public GetCity(){    
-    this.weatherInfoServiceFMI.GetCity(this.latitude,this.longitude)
-      .then((city)=>{
-        this.city=city;
-        if(city!='Turku' && city!='Tampere' &&city!='Helsinki')
-        this.imglink=`/public/assets/img/weather.jpg`;
+  public GetWeatherInfo2nd() {
+    this.weatherInfoServiceFMI.GetWeatherInfo2nd(this.latitude, this.longitude)
+      .subscribe(
+      data => this.weatherInfos = JSON.parse(data.json()),
+      error => this.HandleError(error)
+      );
+  }
+  public GetCity() {
+    this.weatherInfoServiceFMI.GetCity(this.latitude, this.longitude)
+      .then((city) => {
+        this.city = city;
+        if (city != 'Turku' && city != 'Tampere' && city != 'Helsinki')
+          this.imglink = `/public/assets/img/weather.jpg`;
         else
-        this.imglink=`/public/assets/img/${city}.jpg`;
+          this.imglink = `/public/assets/img/${city}.jpg`;
       })
-      .catch((error)=>this.HandleError(error));
-  } 
+      .catch((error) => this.HandleError(error));
+  }
   public ngOnInit() {
     // setttings the header for the home
     this.breadServ.setCurrent({
@@ -63,22 +62,22 @@ public GetWeatherInfo(){
         }
       ]
     });
-    
-    new Promise((resolve,reject)=>{
+
+    new Promise((resolve, reject) => {
       navigator.geolocation.watchPosition(
-        (position)=> resolve(position),
-        (err)=>reject(err)
-      );   
+        (position) => resolve(position),
+        (err) => reject(err)
+      );
     })
-    .then((position:Position)=>{
-        this.latitude=position.coords.latitude;     
-        this.longitude=position.coords.longitude;
-    })
-    .then(_=>{
+      .then((position: Position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      })
+      .then(_ => {
         this.GetCity();
         this.GetWeatherInfo2nd();
-    })
-    .catch((err)=>this.HandleError(err)); 
+      })
+      .catch((err) => this.HandleError(err));
 
   }
 
@@ -87,7 +86,7 @@ public GetWeatherInfo(){
     this.breadServ.clear();
   }
 
-  public HandleError(error:any){
+  public HandleError(error: any) {
 
   }
 

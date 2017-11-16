@@ -135,32 +135,6 @@ var HomeComponent = (function () {
         this.msgServ = msgServ;
         this.breadServ = breadServ;
         this.router = router;
-        //////Chart
-        /*
-        public lineChartData:Array<any> = [
-          {data: [
-            this.weatherInfos.query.results.channel.item.forecast[0].low,
-            this.weatherInfos.query.results.channel.item.forecast[1].low,
-            this.weatherInfos.query.results.channel.item.forecast[2].low,
-            this.weatherInfos.query.results.channel.item.forecast[3].low,
-            this.weatherInfos.query.results.channel.item.forecast[4].low,
-            this.weatherInfos.query.results.channel.item.forecast[5].low,
-            this.weatherInfos.query.results.channel.item.forecast[6].low,
-            this.weatherInfos.query.results.channel.item.forecast[7].low,
-            this.weatherInfos.query.results.channel.item.forecast[8].low,
-            this.weatherInfos.query.results.channel.item.forecast[9].low], label: 'Low Temperatures'},
-          {data: [
-            this.weatherInfos.query.results.channel.item.forecast[0].high,
-            this.weatherInfos.query.results.channel.item.forecast[1].high,
-            this.weatherInfos.query.results.channel.item.forecast[2].high,
-            this.weatherInfos.query.results.channel.item.forecast[3].high,
-            this.weatherInfos.query.results.channel.item.forecast[4].high,
-            this.weatherInfos.query.results.channel.item.forecast[5].high,
-            this.weatherInfos.query.results.channel.item.forecast[6].high,
-            this.weatherInfos.query.results.channel.item.forecast[7].high,
-            this.weatherInfos.query.results.channel.item.forecast[8].high,
-            this.weatherInfos.query.results.channel.item.forecast[9].high], label: 'High Temperatures'}
-        ];*/
         this.lineChartData = [{ data: [] }, { data: [] }];
         this.lineChartLabels = ['DAY1', 'DAY2', 'DAY3', 'DAY4', 'DAY5',
             'DAY6', 'DAY7', 'DAY8', 'DAY9', 'DAY10'];
@@ -221,7 +195,8 @@ var HomeComponent = (function () {
             _this.weatherInfos = JSON.parse(data.json());
             ///charts
             _this.lineChartData = [
-                { data: [
+                {
+                    data: [
                         _this.weatherInfos.query.results.channel.item.forecast[0].low,
                         _this.weatherInfos.query.results.channel.item.forecast[1].low,
                         _this.weatherInfos.query.results.channel.item.forecast[2].low,
@@ -232,8 +207,10 @@ var HomeComponent = (function () {
                         _this.weatherInfos.query.results.channel.item.forecast[7].low,
                         _this.weatherInfos.query.results.channel.item.forecast[8].low,
                         _this.weatherInfos.query.results.channel.item.forecast[9].low
-                    ], label: 'Low Temperatures' },
-                { data: [
+                    ], label: 'Low Temperatures'
+                },
+                {
+                    data: [
                         _this.weatherInfos.query.results.channel.item.forecast[0].high,
                         _this.weatherInfos.query.results.channel.item.forecast[1].high,
                         _this.weatherInfos.query.results.channel.item.forecast[2].high,
@@ -244,7 +221,8 @@ var HomeComponent = (function () {
                         _this.weatherInfos.query.results.channel.item.forecast[7].high,
                         _this.weatherInfos.query.results.channel.item.forecast[8].high,
                         _this.weatherInfos.query.results.channel.item.forecast[9].high
-                    ], label: 'High Temperatures' }
+                    ], label: 'High Temperatures'
+                }
             ];
             ///
             _this.imglink1 = "/public/assets/img/icons/" + _this.weatherInfos.query.results.channel.item.forecast[0].text + ".png";

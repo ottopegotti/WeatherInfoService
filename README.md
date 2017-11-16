@@ -1,24 +1,35 @@
 ## A weather application with angular and express(node.js) and bootstraping ngx-admin-lte is used as a 3rdparty tool
 
-+accomplished 
--works need
+In the development phase, I implemented server side and client side as different projects.
+I combined those two projects for deploying to heroku under single address. 
 
-Get GPS location through Phone location API   +
+Files coded by me
+Server side (Node.js application)
+------------
+/server.js
+/api/*
+/src
 
-•Reverse geocode it to match location (city etc)  + 
+Client side (Angular 4 app)
+------------
+/src/models/*
+/src/services/*
+/src/pages/FMIWeather/*
+/src/pages/home/*
 
-•Display public weather data for that location (from FMI API:s) -> You may choose freely what data to display and how.  +
+What this app does?
+Get GPS location through Phone location API via HTML5 Geocoding API. 
+Then by reverse geocoding, it matches the location with the city. 
+Finally displays public weather data for that location from FMI API and Yahoo Weather API
 
-
-Technology is free to choose (WEB, iOS native, Android Native)
-+(WEB)  Please consider that the Html5 Geolocation Api doesn't work properly on some of the browsers.
-
+In this assignment the technology is free to choose (WEB, iOS native, Android Native)
+I chose WEB.
 
 UI Design is free to do whatever feels comfortable
-+(3rd party angular admin panel) 
+I used (3rd party angular admin panel) 
 
 Additional features are of course a plus but not required
-+(Yahoo weather connection is provided )
+Application retrieves data from Yahoo Weather API
 
 Source code & app should be shared for review (GIT repocitory etc)
 https://github.com/ottopegotti/WeatherInfoService/
@@ -27,7 +38,7 @@ https://github.com/ottopegotti/WeatherInfoService/
 ![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/heroku_demo1.PNG)
 ![Preview](https://github.com/ottopegotti/WeatherInfoService/blob/master/heroku_demo.PNG)
 
-## Lauching with node > 7 locally installed
+## Lauching
 ```
 npm install
 ng build

@@ -29,5 +29,7 @@ export class WeatherInfoServiceYAHOO {
         
      private handleError(error: any): Promise<any> {
        return Promise.reject(error.message || error);
+        
+       
      }
 }
